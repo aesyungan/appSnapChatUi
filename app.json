@@ -15,7 +15,14 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ayungan.snap.chat"
+    },
+    "android": {
+      "package": "com.ayungan.snap.chat",
+      "permissions":[ "CAMERA", "ACCESS_FINE_LOCATION" ]
+      
     }
+
   }
 }

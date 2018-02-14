@@ -9,19 +9,23 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Dimensions
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { Container, Content, Header, Body } from 'native-base';
 import CamaraComponent from './Components/CamaraComponent';
 
+let ScreenHeight = Dimensions.get("window").height;
+
 export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      auterScrollEnable: true
+      auterScrollEnable: true,
     }
   }
+
   verticalScroll = (index) => {
     if (index != 1) {
       this.setState({ auterScrollEnable: false });//no esta en el scroll de la camara
@@ -31,41 +35,49 @@ export default class App extends Component {
     //console.warn(index);
 
   }
+
   render() {
     return (
-      <Container>
-        <Content>
-          <Swiper
-            loop={false}
-            showsPagination={false}
-            index={1}
-            scrollEnabled={this.state.outerScrollEnabled}
-          >
-
-            <View style={styles.slideDefault}>
-              <Text style={styles.text}>Chat</Text>
-            </View>
+      <Container >
+        <Content >
+          <View style={{ height: ScreenHeight }}>
             <Swiper
               loop={false}
               showsPagination={false}
-              horizontal={false}
               index={1}
-              onIndexChanged={(index) => this.verticalScroll(index)}
+              scrollEnabled={this.state.outerScrollEnabled}
             >
+
               <View style={styles.slideDefault}>
-                <Text style={styles.text}>Search</Text>
+                <Text style={styles.text}>Chat</Text>
               </View>
-              <View style={{ flex: 1 }}>
-                <CamaraComponent/>
-              </View>
+              {/*
+              <Swiper
+               style={{backgroundColor:'red'}}
+                loop={false}
+                showsPagination={false}
+                horizontal={false}
+                index={0}
+                onIndexChanged={(index) => this.verticalScroll(index)}
+              >
+                <View style={{ width: 400, height: 200,backgroundColor:'red' }}>
+                  <Text style={styles.text}>Search</Text>
+                </View>
+                <View style={{ width: 400, height: 200 }}>
+                  <CamaraComponent />
+                </View>
+                <View style={{ width: 400, height: 200 }}>
+                  <Text style={styles.text}>Memories</Text>
+                </View>
+              </Swiper>*/}
+
+              <CamaraComponent />
+
               <View style={styles.slideDefault}>
-                <Text style={styles.text}>Memories</Text>
+                <Text style={styles.text}>Stories</Text>
               </View>
             </Swiper>
-            <View style={styles.slideDefault}>
-              <Text style={styles.text}>Stories</Text>
-            </View>
-          </Swiper>
+          </View>
         </Content>
       </Container>
     );
